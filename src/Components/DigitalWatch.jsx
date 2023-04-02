@@ -1,8 +1,7 @@
 import moment from 'moment/moment';
 import React, { useEffect, useState } from 'react';
-import watch from '../assets/images/watch2.png';
 
-const DigitalWatch = ({formatTime, formatDate}) => {
+const DigitalWatch = ({formatTime, formatDate, image, temprature, city}) => {
     const [currentTime, setCurrentTime] = useState(moment());
 
     useEffect(() => {
@@ -14,13 +13,15 @@ const DigitalWatch = ({formatTime, formatDate}) => {
     // 'h:mm:ss a'
     // 'LL'
     return (
-        <div className="flex justify-center gap-4 items-center max-w-lg h-40 mx-auto rounded-2xl shadow-md bg-white bg-opacity-5 border border-gray-200 backdrop-filter backdrop-blur-md" >
+        <div className="flex mt-10 p-5 justify-around gap-4 items-center md:w-[520px] max-w-lg max-h-lg mx-auto rounded-2xl shadow-md bg-white bg-opacity-5 border border-gray-200 backdrop-filter backdrop-blur-md" >
             <div>
-                <img className='w-40' src={watch} alt="" srcset="" />
+                <img className='w-40' src={image} alt="" srcset="" />
             </div>
-            <div>
-                <h2 className='text-2xl text-white'>{currentTime.format(formatTime)}</h2>
-                <h2 className='text-2xl text-white'>{currentTime.format(formatDate)}</h2>
+            <div className=''>
+                { city && <h2 className='text-2xl text-white my-2'>{city}</h2>}
+                { temprature && <h2 className='text-2xl text-white my-2'>{temprature} °C</h2>}
+                <h2 className='text-2xl text-white my-2'>{currentTime.format(formatTime)}</h2>
+                <h2 className='text-2xl text-white my-2'>{currentTime.format(formatDate)}</h2>
             </div>
         </div>
     );

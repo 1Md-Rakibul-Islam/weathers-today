@@ -70,6 +70,7 @@ const FetureBanner = () => {
                 <DigitalWatch
                     formatTime = {formatTime}
                     formatDate = {formatDate}
+                    image = {watch}
                 >
                 </DigitalWatch>
 

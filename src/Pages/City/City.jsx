@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import DigitalWatch from '../../Components/DigitalWatch';
+import watch from '../../assets/images/watch2.png';
+import weather1 from '../../assets/images/weather1.png';
 import bg1 from '../../assets/images/banner1.jpg';
 
 const City = () => {
@@ -24,15 +26,16 @@ const City = () => {
 
     return (
         <div style={{backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh',}} className="bg-slate-400 px-5 pt-16 mx-auto">
-            {name}
-            {humidity}
             <DigitalWatch 
                 formatTime = {formatTime}
                 formatDate = {formatDate}
+                image = {weather1}
+                temprature = {temp}
+                city = {name}
             ></DigitalWatch>
-
-            <div className='mt-10 flex justify-center items-center'>
-                <table className="bg-white w-[720px] rounded-lg shadow-md overflow-hiddentext-center p-5 cursor-pointer hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md">
+            <h2 className='text-4xl font-bold text-center my-10  text-white'>{name}</h2>
+            <div className='flex justify-center items-center'>
+                <table className=" w-[720px] rounded-lg shadow-md overflow-hiddentext-center p-5 cursor-pointer bg-black border-blue-600">
                     <thead className="bg-gray-100">
                         <tr>
                         <th className="py-2 px-4 text-center text-2xl font-bold text-gray-60 uppercase">Metric</th>
