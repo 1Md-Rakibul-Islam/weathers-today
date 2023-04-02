@@ -1,6 +1,6 @@
 # Weather's Today
 
-Website Live Preview [Sokher Furniture](https://).
+Website Live Preview [Sokher Furniture](https://weatherstoday.netlify.app).
 
 ## Website Summery
 
