@@ -19,7 +19,7 @@ const NavBar = () => {
 
   return (
     <nav className="relative w-full mx-auto flex justify-center">
-      <div className='fixed w-full md:border-b md:border-gray-200/30 md:bg-white/20 navmorphism md:backdrop-blur-xl bg-white/0 z-30 transition-all mx-auto'>
+      <div className='fixed w-full z-30 bg-black border-b border-white transition-all mx-auto'>
         <div className="flex justify-end md:justify-between py-4 px-10">
           <div className="hidden md:flex items-center gap-4 text-xl text-white">
              <span>Wellcome, Rakibul Islam</span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import bg from '../../../assets/images/banner1.jpg';
+import bg1 from '../../../assets/images/banner1.jpg';
 import watch from '../../../assets/images/watch2.png';
 import weather1 from '../../../assets/images/weather1.png';
 import DigitalWatch from '../../../Components/DigitalWatch';
@@ -57,16 +57,21 @@ const FetureBanner = () => {
 
         console.log(fetureCityes);
 
-
+    const formatTime = 'h:mm:ss a'
+    const formatDate = 'LL'
 
     return (
         <section>
-            <div style={{backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh',}} className="bg-slate-400 px-5">
+            <div style={{backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh',}} className="px-5">
                 <div className="flex flex-col items-center px-4 mb-8 pt-10 mx-auto text-center md:pt-20 md:px-10 lg:px-32 text-gray-900">
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl xl:max-w-2xl text-white">Weathers Today</h1>
                     <p className="text-lg xl:max-w-3xl text-gray-100">Weathers Today is realtime weathers checking platfrom. You can see weather of any state and city of over warld</p>
                 </div>
-                <DigitalWatch />
+                <DigitalWatch
+                    formatTime = {formatTime}
+                    formatDate = {formatDate}
+                >
+                </DigitalWatch>
 
                 <div className='max-w-6xl mx-auto'>
                     <h2 className='text-4xl text-white'>Today</h2>
@@ -74,15 +79,17 @@ const FetureBanner = () => {
                     <div className='grid gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-rows-1'>
                     {
                         fetureCityes?.map(city => (
-                            <Link to={'/'}>
-                                <div className='text-center p-5 rounded-md cursor-pointer shadow-md bg-white hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md'>
-                                    <div className='flex items-center justify-center gap-2'>
-                                        <img src={weather1} className='w-20' alt="" srcset="" />
-                                        {city?.main?.temp}c
+                            <div>
+                                <Link to={`/city/${city?.name}`}>
+                                    <div className='text-center p-5 rounded-md cursor-pointer shadow-md bg-white hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md'>
+                                        <div className='flex items-center justify-center gap-2'>
+                                            <img src={weather1} className='w-20' alt="" srcset="" />
+                                            {city?.main?.temp}c
+                                        </div>
+                                        <h2 className='text-2xl text-white'>{city?.name}</h2>
                                     </div>
-                                    <h2 className='text-2xl text-white'>{city?.name}</h2>
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
                         ))
                     }
                     </div>
