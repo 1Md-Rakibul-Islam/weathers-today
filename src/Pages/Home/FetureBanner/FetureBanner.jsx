@@ -1,17 +1,63 @@
 import React, { useEffect, useState } from 'react';
 import bg from '../../../assets/images/banner1.jpg';
+import watch from '../../../assets/images/watch2.png';
 import weather1 from '../../../assets/images/weather1.png';
-import moment from 'moment/moment';
+import DigitalWatch from '../../../Components/DigitalWatch';
+import { Link } from 'react-router-dom';
+// import moment from 'moment/moment';
 
 const FetureBanner = () => {
-    const [currentTime, setCurrentTime] = useState(moment());
+    // const [currentTime, setCurrentTime] = useState(moment());
+        // const [city, setCity] = useState({});
 
-    useEffect(() => {
-      const intervalId = setInterval(() => {
-        setCurrentTime(moment());
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }, []);
+        const [Mumbai, setMumbai] = useState({});
+        const [London, setLondon] = useState({});
+        const [Bangalore, setBangalore] = useState({});
+        const [NewYork, setNewYork] = useState({});
+        const [Dhaka, setDhaka] = useState({});
+
+        // useEffect(() => {
+        // const intervalId = setInterval(() => {
+        //     setCurrentTime(moment());
+        // }, 1000);
+        // return () => clearInterval(intervalId);
+        // }, []);
+
+        const fetureCityes = [Mumbai, London, Bangalore, NewYork, Dhaka]
+        
+        useEffect( () => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=Navi Mumbai&appid=298d65b8e5ff4847e140284022f83f76&units=metric`)
+            .then(res => res.json())
+            .then( data => setMumbai(data))
+        }, [])
+
+        useEffect( () => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=Bangalore&appid=298d65b8e5ff4847e140284022f83f76&units=metric`)
+            .then(res => res.json())
+            .then( data => setBangalore(data))
+        }, [])
+
+        useEffect( () => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=298d65b8e5ff4847e140284022f83f76&units=metric`)
+            .then(res => res.json())
+            .then( data => setLondon(data))
+        }, [])
+
+        useEffect( () => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=New York&appid=298d65b8e5ff4847e140284022f83f76&units=metric`)
+            .then(res => res.json())
+            .then( data => setNewYork(data))
+        }, [])
+
+        useEffect( () => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=dhaka&appid=298d65b8e5ff4847e140284022f83f76&units=metric`)
+            .then(res => res.json())
+            .then( data => setDhaka(data))
+        }, [])
+
+        console.log(fetureCityes);
+
+
 
     return (
         <section>
@@ -20,14 +66,25 @@ const FetureBanner = () => {
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl xl:max-w-2xl text-white">Weathers Today</h1>
                     <p className="text-lg xl:max-w-3xl text-gray-100">Weathers Today is realtime weathers checking platfrom. You can see weather of any state and city of over warld</p>
                 </div>
-                <div className="flex justify-center gap-4 items-center max-w-lg h-40 mx-auto rounded-2xl shadow-md bg-white bg-opacity-5 border border-gray-200 backdrop-filter backdrop-blur-md" >
-                {/* <div className="lg:w-[75vw] md:w-[80vw] w-[80vw] md:h-[45vh] lg:h-[60vh] h-full mx-auto rounded-2xl shadow-md bg-white bg-opacity-5 border border-gray-200 backdrop-filter backdrop-blur-md" > */}
-                    <div>
-                        <img className='w-52' src={weather1} alt="" srcset="" />
-                    </div>
-                    <div>
-                        <h2 className='text-2xl text-white'>{currentTime.format('h:mm:ss a')}</h2>
-                        <h2 className='text-2xl text-white'>{currentTime.format('LL')}</h2>
+                <DigitalWatch />
+
+                <div className='max-w-6xl mx-auto'>
+                    <h2 className='text-4xl text-white'>Today</h2>
+                    <br />
+                    <div className='grid gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-rows-1'>
+                    {
+                        fetureCityes?.map(city => (
+                            <Link to={'/'}>
+                                <div className='text-center p-5 rounded-md cursor-pointer shadow-md bg-white hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md'>
+                                    <div className='flex items-center justify-center gap-2'>
+                                        <img src={weather1} className='w-20' alt="" srcset="" />
+                                        {city?.main?.temp}c
+                                    </div>
+                                    <h2 className='text-2xl text-white'>{city?.name}</h2>
+                                </div>
+                            </Link>
+                        ))
+                    }
                     </div>
                 </div>
             </div>
