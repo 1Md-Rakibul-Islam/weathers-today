@@ -75,19 +75,20 @@ const FetureBanner = () => {
                 </DigitalWatch>
 
                 <div className='max-w-6xl mx-auto'>
-                    <h2 className='text-4xl text-white'>Today</h2>
-                    <br />
+                    <h2 className='text-4xl font-semibold text-white'>Today</h2>
+                    <hr className='mb-10 mt-2 h-5' />
                     <div className='grid gap-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-rows-1'>
                     {
                         fetureCityes?.map(city => (
                             <div>
                                 <Link to={`/city/${city?.name}`}>
-                                    <div className='text-center p-5 rounded-md cursor-pointer shadow-md bg-white hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md'>
+                                    <div className='text-center text-white p-5 rounded-md cursor-pointer shadow-2xl bg-body border-blue-600  border hover:bg-white hover:bg-opacity-5 hover:border-gray-200 backdrop-filter backdrop-blur-md'>
+                                    {/* <div className='text-center text-white p-5 rounded-md cursor-pointer shadow-md bg-white hover:bg-black bg-opacity-5 border border-gray-200 hover:border-blue-600 backdrop-filter backdrop-blur-md'> */}
                                         <div className='flex items-center justify-center gap-2'>
                                             <img src={weather1} className='w-20' alt="" srcset="" />
-                                            {city?.main?.temp}c
+                                            <h2>{city?.main?.temp} °C</h2>
                                         </div>
-                                        <h2 className='text-2xl text-white'>{city?.name}</h2>
+                                        <h2 className='text-2xl'>{city?.name}</h2>
                                     </div>
                                 </Link>
                             </div>
