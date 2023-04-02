@@ -5,22 +5,31 @@ import weather1 from '../../../assets/images/weather1.png';
 import DigitalWatch from '../../../Components/DigitalWatch';
 import { Link } from 'react-router-dom';
 import cityes from '../../../API/cityes';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const FetureBanner = () => {
-
-    const fetureCityes = [cityes("Navi Mumbai"), cityes("London"), cityes("Bangalore"), cityes(NewYork), cityes("Dhaka")];
-    console.log(fetureCityes);
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    const fetureCityes = [cityes("Navi Mumbai"), cityes("London"), cityes("Bangalore"), cityes("New York"), cityes("Dhaka")];
+    // console.log(fetureCityes);
 
     const formatTime = 'h:mm:ss a'
     const formatDate = 'LL'
+    
+    // if (isLoading) {
+    //     return <div>Loading ...</div>;
+    // }
 
     return (
         <section>
-            <div style={{backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh',}} className="px-5">
+            <div style={{backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh',}} className="px-5 pt-16">
                 <div className="flex flex-col items-center px-4 mb-8 pt-10 mx-auto text-center md:pt-20 md:px-10 lg:px-32 text-gray-900">
-                    <h1 className="text-4xl font-bold leading-none sm:text-5xl xl:max-w-2xl text-white">Weathers Today</h1>
-                    <p className="text-lg xl:max-w-3xl text-gray-100">Weathers Today is realtime weathers checking platfrom. You can see weather of any state and city of over warld</p>
+                    <h1 className="text-4xl font-bold leading-none sm:text-5xl mb-2 max-w-4xl text-white">
+                        {
+                            isAuthenticated ? `Wellcome, ${user?.name}` : 'Wellcome to Weathers Today'
+                        }
+                    </h1>
+                    <p className="text-lg xl:max-w-2xl text-gray-100">Weathers Today is realtime weathers checking platfrom. You can see weather of any state and city of over warld</p>
                 </div>
                 <DigitalWatch
                     formatTime = {formatTime}
